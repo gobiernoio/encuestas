@@ -1,0 +1,76 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			Inicio
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+
+	<ion-grid>
+
+		<!-- ==================	NO HAY USUARIO ================== -->
+		<ion-row *ngIf="!gioUsuario else noHayUsuario" class="animated fadeIn">
+			<ion-col col-12 padding>
+				<h2>¡Hola!</h2>
+				<p>Ingresa un nombre de usuario, sin espacios ni caracteres extraños.</p>
+
+				<ion-item no-lines>
+
+					<ion-input type="text" placeholder="Toca aquí para escribir tu nombre"
+						[(ngModel)]="nombreIngresado">
+					</ion-input>
+
+					<ion-button item-end (click)="crearUsuario(nombreIngresado); nombreIngresado=''">
+						<ion-icon name="send"></ion-icon>
+					</ion-button>
+
+				</ion-item>
+
+			</ion-col>
+		</ion-row>
+
+		<!-- ================== HAY USUARIO PERO NO HAY ENCUESTA ================== -->
+		<ng-template #noHayUsuario>
+			<div *ngIf="!gioPreguntas else todo">
+				<ion-row class="animated fadeIn">
+					<ion-col col-12 padding>
+						<h3>Falta la encuesta</h3>
+
+						<p>Da clic en el siguiente botón para seleccionar la encuesta a usar.</p>
+
+
+						<ion-col col-12 style="text-align: center;">
+							<ion-button icon-left (click)="llamarCargaEncuestas()">
+								<ion-icon name="md-cloud-download"></ion-icon>
+								Cargar Encuesta
+							</ion-button>
+						</ion-col>
+
+					</ion-col>
+				</ion-row>
+			</div>
+		</ng-template>
+
+		<!-- ================== YA HAY USUARIO Y ENCUESTA ================== -->
+		<ng-template #todo>
+			<ion-row class="animated fadeIn">
+				<ion-col col-12 padding>
+					<h3>Encuesta: <b>{{ gioEncuestaTitulo }}</b></h3>
+					<h3>Usuario: <b>{{ gioUsuario }}</b></h3>
+
+					<ion-button (click)="iniciarEncuesta()">
+						Iniciar Encuesta
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ng-template>
+
+
+
+	</ion-grid>
+</ion-content>

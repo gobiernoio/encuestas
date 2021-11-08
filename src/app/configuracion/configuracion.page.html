@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        
+        <ion-title>
+            Configuración
+        </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-content>
+        <ion-item-group>
+            <ion-item-divider color="light">Encuestas</ion-item-divider>
+
+            <ion-item (click)="llamarCargaEncuestas()">
+                <ion-icon name="md-cloud-download" item-start></ion-icon>Descargar encuesta
+            </ion-item>
+        </ion-item-group>
+
+
+        <ion-item-group>
+            <ion-item-divider color="light">Usuario</ion-item-divider>
+
+            <ion-item (click)="cambiarUsuario(usuario)">
+                <ion-icon name="md-person-add" item-start></ion-icon>
+                Cambiar usuario actual: <b> {{ usuario }} </b>
+            </ion-item>
+        </ion-item-group>
+
+
+
+        <ion-item-group>
+            <ion-item-divider color="light">Server API</ion-item-divider>
+
+            <ion-item (click)="cambiarServerApi(serverApi)">
+                <ion-icon name="md-person-add" item-start></ion-icon>
+                API Actual: <p>{{ serverURL }} </p>
+            </ion-item>
+        </ion-item-group>
+
+
+
+        <ion-item-group>
+            <ion-item-divider color="light">Registros</ion-item-divider>
+
+            <ion-item (click)="sincronizar()">
+                <ion-icon name="md-cloud-upload" item-start></ion-icon>
+                Sincronizar todos los registros
+            </ion-item>
+
+            <!-- <ion-item *ngIf="cargando">
+                <ion-progress-bar type="indeterminate"></ion-progress-bar>
+            </ion-item> -->
+
+            <ion-item (click)="borrarRegistros()">
+                <ion-icon name="md-trash" item-start></ion-icon>
+                Borrar todos los registros
+            </ion-item>
+        </ion-item-group>
+
+
+
+    </ion-content>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "gioEstadistica",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

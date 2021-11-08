@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Guardar encuesta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-row>
+      <p>
+        La encuesta ha finalizado, pero aún necesitas guardarla.
+      </p>
+  
+      <p>
+        Presiona el siguiente botón, si la encuesta se guarda correctamente, te regresará al inicio.
+      </p>
+    </ion-row>
+  
+    
+    <ion-button *ngIf="!encuestaGuardada; else yaseguardo" color="primary" (click)="guardarEncuesta()">
+      Guardar encuesta.
+    </ion-button>
+
+    <ng-template #yaseguardo>
+      <ion-button routerLink="/home">
+        Regresar al inicio
+      </ion-button>
+    </ng-template>
+    
+  
+  </ion-content>

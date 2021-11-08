@@ -1,0 +1,57 @@
+<ion-header>
+		<ion-toolbar>
+			<ion-buttons slot="start">
+				<ion-back-button text="Atrás"></ion-back-button>
+			</ion-buttons>
+			<ion-title>
+				Encuesta
+			</ion-title>
+		</ion-toolbar>
+	</ion-header>
+<ion-content>
+	<ion-grid>
+		<ion-row>
+			<h5> {{ pregunta.pregunta }} </h5>
+		</ion-row>
+
+
+
+		<ion-row>
+			<ion-col>
+				<ion-item-group *ngIf="pregunta.tipo == 'multiple'">
+					<ion-item *ngFor="let item of pregunta.respuestas">
+						<ion-label>{{ item }}</ion-label>
+						<ion-checkbox (ionChange)="multipleElegida(pregunta.nombre, item)" #checkbox></ion-checkbox>
+					</ion-item>
+				</ion-item-group>
+
+				<ion-radio-group *ngIf="pregunta.tipo == 'factor' || pregunta.tipo == 'promedio' || pregunta.tipo == 'porcentaje'">
+					<ion-item *ngFor="let item of pregunta.respuestas">
+						<ion-label>{{ item }}</ion-label>
+						<ion-radio value="{{ item }}" (ionSelect)="ingresarPreguntaElegida(pregunta.nombre, item)"></ion-radio>
+					</ion-item>
+				</ion-radio-group>
+			</ion-col>
+		</ion-row>
+
+
+
+		<ion-row>
+			<ion-col>
+				<div *ngIf="( preguntaId + 1 < gioPreguntas.length)">
+					<ion-button color="primary" (click)="avanzar( preguntaId + 1)" [disabled]="botonHabilitado">
+						<ion-ripple-effect></ion-ripple-effect>
+						Siguiente
+					</ion-button>
+				</div>
+
+				<div *ngIf="( preguntaId + 1 == gioPreguntas.length)">
+					<ion-button color="primary" (click)="finalizar()" [disabled]="botonHabilitado">
+						<ion-ripple-effect></ion-ripple-effect>
+						Finalizar
+					</ion-button>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
